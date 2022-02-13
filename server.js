@@ -39,6 +39,7 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 // const widgetsRoutes = require("./routes/landing.js");
 const createQuizRoutes = require("./routes/create_quiz");
+const quizzesRoutes = require("./routes/quizzes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -46,6 +47,7 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // app.use("/", widgetsRoutes(db));
 app.use("/create-quiz", createQuizRoutes(db));
+app.use("/api/quizzes", quizzesRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
