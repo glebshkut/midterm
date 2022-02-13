@@ -17,13 +17,15 @@ body {
    flex-direction: column;
  }
 
+
 .main-menu{
-  padding-top: 30px;
+  padding-top: 25px;
   font-family: 'Philosopher', sans-serif;
   font-size: 25pt;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  justify-content: flex-end;
 }
 
 .new-quiz{
@@ -48,6 +50,21 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+}
+.new-quiz-button {
+  background-color:#7aba96 ;
+  border: none;
+  font-size: 18pt;
+}
+
+.join-quiz-button {
+  background-color:#7aba96 ;
+  border: none;
+  font-size: 18pt;
+}
+
+form.join-quiz-button {
+  padding-top: 15px;
 }
 
 .new-quiz:after {
@@ -85,6 +102,7 @@ body {
 }
 
 .join-quiz {
+  margin-top: 20px;
     align-items: center;
     background-color: #7aba96;
     border: 2px solid #111;
@@ -144,4 +162,3 @@ body {
 
 
 
-  
