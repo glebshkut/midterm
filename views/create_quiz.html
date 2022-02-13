@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Create Quiz</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/create_quiz.css" type="text/css" />
+  <style>
+
+  body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  main {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input {
+    margin : 1em 0em 1em 0em;
+  }
+
+  div {
+    width: 100%;
+  }
+
+  input {
+    width: 75%;
+  }
+
+  .home {
+    display: flex;
+    align-content: end;
+    justify-content: flex-end;
+    width: 75%;
+    margin-top: 6em;
+  }
+
+  .question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .correct {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .wrong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .create-quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wrong {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 38%;
+    width: 75%;
+  }
+  .buttons div {
+    width: 13%
+  }
+
+  </style>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <div class="home">
+    <a href="/">
+    <button>HOME</button>
+     </a></div>
+  <Header>
+    <div class="logo">
+      Quizzyy!
+    </div>
+  </Header>
+
+  <main class="main">
+    <h5>Create quiz</h5>
+      <form method="POST">
+        <div class="question"><input placeholder="Type your question here" class="question-input"></div>
+        <div class="correct"><input placeholder="Type the correct answer here" class="correct-input"></div>
+        <div class="wrong">
+          <input placeholder="type a wrong answer here" class="wrong-input">
+          <input placeholder="type a wrong answer here" class="wrong-input">
+          <input placeholder="type a wrong answer here" class="wrong-input">
+        </div>
+        <div class="buttons">
+          <div></div>
+          <button class="next-question" type="submit">Add Question</button>
+          <button class="submit-quiz" type="submit">Submit Quiz</button>
+        </div>
+      </form>
+  </main>
+
+
+</body>
+
+</html>
