@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 $(document).ready(function () {
   $('.join-quiz-button').click(function (event) {
     event.preventDefault();
