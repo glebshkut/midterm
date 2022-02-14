@@ -38,7 +38,6 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 // const widgetsRoutes = require("./routes/landing.js");
-const createQuizRoutes = require("./routes/create_quiz");
 const quizzesRoutes = require("./routes/quizzes");
 
 
@@ -47,8 +46,7 @@ const quizzesRoutes = require("./routes/quizzes");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // app.use("/", widgetsRoutes(db));
-app.use("/create-quiz", createQuizRoutes(db));
-app.use("/api/quizzes", quizzesRoutes(db));
+app.use("/quizzes", quizzesRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
