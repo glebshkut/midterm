@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Quiz</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/quiz.css" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,700;1,700&family=Rajdhani:wght@500&display=swap"
+    rel="stylesheet">
+  <style>
+
+
+
+  </style>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+</head>
+
+<body>
+  <div class="home">
+    <a href="/">
+      <button class="home-button">HOME</button>
+    </a>
+  </div>
+  <header>
+    <div class="logo">
+      Quizzyy!
+    </div>
+  </header>
+
+  <h3 class="create-quiz"><%= quiz[0].subject %> - <%= quiz[0].name %></h3>
+  <main id="#qa-content">
+    <div class="question">
+      <%= quiz[0].question %>
+    </div>
+
+    <div class="answers">
+      <% let answers = [quiz[0].answer_1, quiz[0].answer_2, quiz[0].answer_3, quiz[0].answer_4] %>
+      <% let usedIndexes = []; %>
+      <% while (usedIndexes.length < 4) { %>
+        <% let randomIndex = Math.floor(Math.random() * answers.length); %>
+        <% if (usedIndexes.includes(randomIndex)) { %>
+          <% continue; %>
+        <% }; %>
+        <% usedIndexes.push(randomIndex); %>
+        <button id="<%= randomIndex + 1 %>"><%= answers[randomIndex] %></button>
+      <% } %>
+    </div>
+
+
+  </main>
+
+
+</body>
+
+</html>
