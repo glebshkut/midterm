@@ -20,10 +20,12 @@ const renderQuizElements = function() {
 };
 
 const renderQuizEntry = function () {
-  console.log($('.create-quiz').length);
-  if ($('.create-quiz').length === 1) {
+  console.log($('.create-quiz').is(':empty'));
+  if ($('.create-quiz').is(':empty')) {
     let $quizEntry = creatQuizEntry();
     $('.create-quiz').prepend($quizEntry);
+    $('.create-quiz').slideDown(400);
+  } else if ($('.create-quiz').is(':hidden')) {
     $('.create-quiz').slideDown(400);
   } else {
     $('.create-quiz').slideUp(400);
