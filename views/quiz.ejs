@@ -37,17 +37,23 @@
     </div>
   </header>
 
-  <h3 class="create-quiz">Quiz - <%= quiz[0].name %></h3>
+  <h3 class="create-quiz"><%= quiz[0].subject %> - <%= quiz[0].name %></h3>
   <main id="#qa-content">
     <div class="question">
       <%= quiz[0].question %>
     </div>
 
     <div class="answers">
-      <button><%= quiz[0].answer_1 %></button>
-      <button><%= quiz[0].answer_2 %></button>
-      <button><%= quiz[0].answer_3 %></button>
-      <button><%= quiz[0].answer_4 %></button>
+      <% let answers = [quiz[0].answer_1, quiz[0].answer_2, quiz[0].answer_3, quiz[0].answer_4] %>
+      <% let usedIndexes = []; %>
+      <% while (usedIndexes.length < 4) { %>
+        <% let randomIndex = Math.floor(Math.random() * answers.length); %>
+        <% if (usedIndexes.includes(randomIndex)) { %>
+          <% continue; %>
+        <% }; %>
+        <% usedIndexes.push(randomIndex); %>
+        <button id="<%= randomIndex + 1 %>"><%= answers[randomIndex] %></button>
+      <% } %>
     </div>
 
 

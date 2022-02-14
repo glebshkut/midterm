@@ -7,7 +7,7 @@ module.exports = (db) => {
     const quiz_id = req.params.id;
 
     db.query(`
-    SELECT quizzes.name, qas.question, qas.answer_1, qas.answer_2, qas.answer_3, qas.answer_4
+    SELECT quizzes.subject, quizzes.name, qas.question, qas.answer_1, qas.answer_2, qas.answer_3, qas.answer_4
     FROM quizzes
     JOIN qas ON quizzes.id = qas.quiz_id
     WHERE quizzes.id = $1;
