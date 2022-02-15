@@ -23,5 +23,25 @@ module.exports = (db) => {
   router.get("/new", (req, res) => {
     res.render("../views/create_quiz");
   });
+
+  router.get("/quiz", (req, res) =>{
+    db.query(`
+    SELECT name, subject FROM quizzes
+    ORDER BY name, subject;
+    `)
+      .then(data => {
+        const quizzes = data.rows;
+        // console.log(quizzes);
+
+        res.json({quizzes});
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
   return router;
 };
+
+
