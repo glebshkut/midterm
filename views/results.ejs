@@ -17,10 +17,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,700;1,700&family=Rajdhani:wght@500&display=swap"
     rel="stylesheet">
-    <link rel="stylesheet" href="/styles/results.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/results.css" type="text/css" />
 
   <style>
   </style>
+  <script type="text/javascript" src="/scripts/quiz_results.js"></script>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/routes/results.js"></script>
@@ -44,7 +45,8 @@
       <h2 class="quiz-result">9/10</h2>
       <div class="buttons">
         <div></div>
-        <button class="share-results" type="submit">Share your results</button>
+        <button class="share-results"
+          onclick="prompt('Copy this link to share your results!',window.location.href)">Share your results</button>
         <button class="reattempt-quiz" type="submit">Reattempt this quiz</button>
       </div>
     </form>
