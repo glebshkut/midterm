@@ -21,10 +21,11 @@
 
   <style>
   </style>
-  <script type="text/javascript" src="/scripts/quiz_results.js"></script>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/quiz_results.js"></script>
+
   <script type="text/javascript" src="/scripts/app.js"></script>
-  <script type="text/javascript" src="/routes/results.js"></script>
+  <!-- <script type="text/javascript" src="/results.js"></script> -->
 </head>
 
 <body>
@@ -42,7 +43,10 @@
   <main class="main">
     <h5 class="score">Your score is:</h5>
     <form method="GET">
-      <h2 class="quiz-result">9/10</h2>
+
+      <h2 class="quiz-result">
+        <%=(score.correct)%>/3
+      </h2>
       <div class="buttons">
         <div></div>
         <button class="share-results"
