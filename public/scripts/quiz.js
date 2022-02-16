@@ -25,7 +25,7 @@ $(document).ready(() => {
      }
 
     $('main#qa-content').append(`
-    <div id="question_${question_id}" class="question">
+    <div id="question_${question_id}" class="question">x
       ${question.question}
     </div>
 
