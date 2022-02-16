@@ -60,6 +60,11 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/login/:user_id", (req, res) => {
+  res.cookie('user_id', req.params.user_id);
+  res.redirect('/');
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
