@@ -10,15 +10,15 @@ $(document).ready(function() {
     event.preventDefault();
     renderQuizEntry();
     $('.submit-name').on('click', function(event) {
-      myStorage.setItem("quiz-name" , $('.quiz-name').val());
-      myStorage.setItem("quiz-subject" , $('.quiz-subject').val());
+      myStorage.setItem("quizName" , $('.quiz-name').val());
+      myStorage.setItem("quizSubject" , $('.quiz-subject').val());
     });
   });
 
 });
 
 const renderQuizElements = function() {
-  console.log("adding quiz to html");
+  console.log("adding quiz");
   console.log($('.list').is(':empty'));
   if ($('.list').is(':empty')) {
     $.ajax({
