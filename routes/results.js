@@ -5,7 +5,7 @@ var app = express();
 
 
 module.exports = (db) => {
-  router.get("/quizID/:id", (req, res) => {
+  router.get("/:id", (req, res) => {
     let templateVars = {};
     const id = req.session.user_id;
     const quizID = req.params.id;
@@ -34,6 +34,25 @@ HAVING attempts.given_answer = 1;
       .catch(err => console.log("error", err));
 
   });
+
+  router.post("/add_results", (req, res) => {
+    const cookie = req.session.user_id;
+    const quiz_id = req.body.quiz_id;
+    const result = req.body.result;
+    const maxResult = req.body.maxResult;
+
+    db.query(`
+      INSERT INTO results(user_id, quiz_id, result, max_result) VALUES ($1, $2, $3, $4);
+    `, [cookie, quiz_id, result, maxResult])
+      .then()
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+
   return router;
 };
 
