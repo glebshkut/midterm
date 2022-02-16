@@ -27,6 +27,7 @@ module.exports = (db) => {
   router.get("/quiz", (req, res) => {
     db.query(`
     SELECT name, subject FROM quizzes
+    WHERE private = false
     ORDER BY name, subject;
     `)
       .then(data => {
