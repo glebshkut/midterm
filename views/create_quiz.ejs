@@ -38,19 +38,24 @@
     </div>
   </Header>
 
+
   <main class="main">
     <h5 class="create-quiz">Create a Quiz</h5>
     <form method="POST">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
       <div class="question"><input placeholder="Type your question here" class="question-input"></div>
       <div class="correct"><input placeholder="Type the correct answer here" class="correct-input"></div>
       <div class="wrong">
-        <input placeholder="Type a wrong answer here" class="wrong-input">
-        <input placeholder="Type a wrong answer here" class="wrong-input">
-        <input placeholder="Type a wrong answer here" class="wrong-input">
+        <input placeholder="Type a wrong answer here" class="wrong-input1">
+        <input placeholder="Type a wrong answer here" class="wrong-input2">
+        <input placeholder="Type a wrong answer here" class="wrong-input3">
       </div>
       <div class="buttons">
         <div></div>
-        <button class="next-question" type="submit">Add Question</button>
+        <button class="next-question" type="button">Add Question</button>
         <button class="submit-quiz" type="submit">Submit Quiz</button>
       </div>
     </form>
