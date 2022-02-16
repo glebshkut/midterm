@@ -1,32 +1,32 @@
 /* eslint-disable no-undef */
 myStorage = window.sessionStorage;
-$(document).ready(function() {
-  $('.join-quiz-button').click(function(event) {
+$(document).ready(function () {
+  $('.join-quiz').click(function (event) {
     event.preventDefault();
     renderQuizElements();
   });
 
-  $('.new-quiz-button').click(function(event) {
+  $('.new-quiz').click(function (event) {
     event.preventDefault();
     renderQuizEntry();
-    $('.submit-name').on('click', function(event) {
-      myStorage.setItem("quiz-name" , $('.quiz-name').val());
-      myStorage.setItem("quiz-subject" , $('.quiz-subject').val());
+    $('.submit-name').on('click', function (event) {
+      myStorage.setItem("quiz-name", $('.quiz-name').val());
+      myStorage.setItem("quiz-subject", $('.quiz-subject').val());
     });
   });
 
 });
 
-const renderQuizElements = function() {
+const renderQuizElements = function () {
   console.log("adding quiz to html");
   console.log($('.list').is(':empty'));
   if ($('.list').is(':empty')) {
     $.ajax({
 
-      url : '/quizzes/quiz',
-      type : 'GET',
-      dataType:'json',
-      success : function(data) {
+      url: '/quizzes/quiz',
+      type: 'GET',
+      dataType: 'json',
+      success: function (data) {
 
         let result = JSON.stringify(data);
         let parseResult = JSON.parse(result);
@@ -35,7 +35,7 @@ const renderQuizElements = function() {
         $('.list').prepend($quiz);
         $('.posted').slideDown(400);
       },
-      error : function(request,error) {
+      error: function (request, error) {
         console.log("Request: " + JSON.stringify(request));
       }
     });
@@ -47,7 +47,7 @@ const renderQuizElements = function() {
 
 };
 
-const renderQuizEntry = function() {
+const renderQuizEntry = function () {
 
   if ($('.create-quiz').is(':empty')) {
     let $quizEntry = creatQuizEntry();
@@ -61,7 +61,7 @@ const renderQuizEntry = function() {
 
 };
 
-const createQuizElement = function(data) {
+const createQuizElement = function (data) {
   let list = `<ul class="quiz-list">`;
   data.forEach(quiz => {
     console.log(quiz);
@@ -74,7 +74,7 @@ const createQuizElement = function(data) {
   return $quiz;
 };
 
-const creatQuizEntry = function() {
+const creatQuizEntry = function () {
   const $entry = $(`
     <form class="entry" method="GET" action="quizzes/new">
         <h6>Name</h6>
