@@ -65,7 +65,7 @@ const createQuizElement = function (data) {
   let list = `<ul class="quiz-list">`;
   data.forEach(quiz => {
     console.log(quiz);
-    list += `<li><a href="">${quiz.name}</a></li>`;
+    list += `<li><a href="/quiz/${quiz.id}">${quiz.name}</a></li>`;
   });
 
   list += `</ul>`;
@@ -87,3 +87,4 @@ const creatQuizEntry = function () {
 
   return $entry;
 };
+

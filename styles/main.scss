@@ -24,8 +24,8 @@ body {
   font-size: 25pt;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .new-quiz{
@@ -161,39 +161,41 @@ form.join-quiz-button {
   }
 
   .search {
-    width: 100%;
+    width: 140%;
     height: 50px;
     background-color: rgba(245, 245, 245, 0.776);
     font-family: 'Rajdhani', sans-serif;
-  font-size: 17px;
+  font-size: 20px;
   border-style: solid;
   border-color: black;
   border-radius: 15px;
   }
 
-  .h6 {
+  h6 {
     font-family: 'Rajdhani', sans-serif;
     font-size: 20pt;
     margin-bottom: 4px;
   }
 
   .quiz-name {
-    width: 100%;
+    // display: flex;
+    // align-items: center;
+    width: 130%;
     height: 50px;
     background-color: rgba(245, 245, 245, 0.776);
     font-family: 'Rajdhani', sans-serif;
-  font-size: 17px;
+  font-size: 20px;
   border-style: solid;
   border-color: black;
   border-radius: 15px;
   }
 
   .quiz-subject {
-    width: 100%;
+    width: 130%;
     height: 50px;
     background-color: rgba(245, 245, 245, 0.776);
     font-family: 'Rajdhani', sans-serif;
-  font-size: 17px;
+  font-size: 20px;
   border-style: solid;
   border-color: black;
   border-radius: 15px;
@@ -216,7 +218,7 @@ form.join-quiz-button {
     cursor: pointer;
     display: inline-block;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 17px;
+    font-size: 20px;
     line-height: 23px;
     outline: none;
     padding: .75rem;
@@ -249,5 +251,8 @@ a {
   color: black;
 }
 a:hover {
-  color: rgb(71, 28, 114);
+  // color: rgb(71, 28, 114);
+  color: #8ed0dff5;
 }
+
+
