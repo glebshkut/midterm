@@ -45,7 +45,9 @@
     <form method="GET">
 
       <h2 class="quiz-result">
-        <%=(score.correct)%>/3
+
+        <%=(score===undefined ? 0 : score.correct) %>/3
+
       </h2>
       <div class="buttons">
         <div></div>
