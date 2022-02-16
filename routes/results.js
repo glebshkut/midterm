@@ -25,9 +25,8 @@ HAVING attempts.given_answer = 1;
   `, [id, quizID])
       .then(result => {
         const score = result.rows[0];
+        console.log("SCORE:: ", score);
         templateVars = { score };
-        console.log(score);
-        // res.send({ result });
 
         res.render("results", templateVars);
       })
@@ -36,4 +35,5 @@ HAVING attempts.given_answer = 1;
   });
   return router;
 };
+
 
