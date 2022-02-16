@@ -24,6 +24,11 @@ module.exports = (db) => {
 
   });
 
-  
+  router.get("/newq", (req, res) => {
+    console.log("sjdfhaskdjfhsdkjfhvsdkjhfvbjsdkhfv");
+    res.render("../views/create_quiz", {});
+  });
+
+
   return router;
 };

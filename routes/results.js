@@ -21,7 +21,7 @@ FROM attempts;
       .then(result => {
         const score = result.rows;
         console.log(score);
-        res.send({ result })
+        res.send({ result });
 
       })
       .catch(err => console.log("error", err));

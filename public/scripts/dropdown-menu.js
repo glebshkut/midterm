@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+myStorage = window.sessionStorage;
 $(document).ready(function() {
   $('.join-quiz-button').click(function(event) {
     event.preventDefault();
@@ -8,12 +9,16 @@ $(document).ready(function() {
   $('.new-quiz-button').click(function(event) {
     event.preventDefault();
     renderQuizEntry();
+    $('.submit-name').on('click', function(event) {
+      myStorage.setItem("quiz-name" , $('.quiz-name').val());
+      myStorage.setItem("quiz-subject" , $('.quiz-subject').val());
+    });
   });
+
 });
 
 const renderQuizElements = function() {
   console.log("adding quiz to html");
-  let isQueried = document.getElementById(".quiz-list");
   console.log($('.list').is(':empty'));
   if ($('.list').is(':empty')) {
     $.ajax({
@@ -39,8 +44,6 @@ const renderQuizElements = function() {
   } else {
     $('.posted').slideUp(400);
   }
-
-
 
 };
 
@@ -73,12 +76,14 @@ const createQuizElement = function(data) {
 
 const creatQuizEntry = function() {
   const $entry = $(`
-    <form class="entry" METHOD="GET">
+    <form class="entry" method="GET" action="quizzes/new">
         <h6>Name</h6>
-        <input placeholder="Enter quiz name here">
+        <input placeholder="Enter quiz name here" class="quiz-name">
         <h6>Subject</h6>
-        <input placeholder="enter quiz subject here">
+        <input placeholder="enter quiz subject here" class="quiz-subject">
+        <button type="submit" class="submit-name">Let's create!</button>
     <form>
   `);
+
   return $entry;
 };
