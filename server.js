@@ -7,6 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+var cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -21,6 +22,12 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ["WHAT"],
+  maxAge: 24 * 60 * 60 * 1000
+}));
 
 app.use(
   "/styles",
@@ -61,7 +68,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login/:user_id", (req, res) => {
-  res.cookie('user_id', req.params.user_id);
+  req.session["user_id"] = req.params.user_id;
   res.redirect('/');
 });
 
