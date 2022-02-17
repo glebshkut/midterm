@@ -24,6 +24,7 @@ module.exports = (db) => {
     res.render("../views/create_quiz");
   });
 
+
   router.get("/quiz", (req, res) => {
     db.query(`
     SELECT name, id, subject FROM quizzes
@@ -43,6 +44,8 @@ module.exports = (db) => {
       });
   });
   return router;
+
 };
+
 
 

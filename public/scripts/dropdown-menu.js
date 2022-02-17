@@ -1,3 +1,5 @@
+// const dbParams = require("../../lib/db");
+
 /* eslint-disable no-undef */
 myStorage = window.sessionStorage;
 $(document).ready(function () {
@@ -74,6 +76,7 @@ const createQuizElement = function (data) {
   return $quiz;
 };
 
+
 const creatQuizEntry = function () {
   const $entry = $(`
     <form class="entry" method="GET" action="quizzes/new">
@@ -87,4 +90,5 @@ const creatQuizEntry = function () {
 
   return $entry;
 };
+
 

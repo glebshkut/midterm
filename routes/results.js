@@ -11,9 +11,6 @@ module.exports = (db) => {
     const quizID = req.params.id;
     console.log("id: ", id);
     console.log("quiz id: ", quizID);
-
-    // const id = 1;
-    // const quizID = 2;
     console.log("HELLOOO");
     db.query(`
   SELECT count(given_answer) as correct
