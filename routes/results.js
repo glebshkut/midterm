@@ -23,11 +23,13 @@ module.exports = (db) => {
     let templateVars = {};
     console.log("Inside GET RESULT PAGE");
     db.query(`
-  SELECT result FROM results
+  SELECT result, quiz_id, max_result, users.username, quizzes.name as quiz_name, quizzes.subject FROM results
+  JOIN quizzes ON quizzes.id = results.quiz_id
+  JOIN users ON users.id = results.user_id
   WHERE results.id = $1;
   `, [id])
       .then(result => {
-        const score = result.rows[0].result;
+        const score = result.rows[0];
         templateVars = { score };
         console.log(score, "score");
 

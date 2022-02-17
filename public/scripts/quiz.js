@@ -6,7 +6,9 @@ $(document).ready(() => {
       type: "GET",
       dataType: "html",
       success: function (data) {
-        console.log("results page is loaded:");
+        console.log("results page is loaded:", data);
+        // $('body').replaceWith(data);
+        document.location.replace(`/results/${resultID}`);
       },
       error: function (request, error) {
         console.log("ERROR in loading results page:", error);
@@ -115,52 +117,46 @@ $(document).ready(() => {
     $.ajax({
       method: 'POST',
       url: `/quiz/attempt`,
-      data: {question_id, id}
-    })
-      .then()
+      data: {question_id, id},
+      success: function() {
 
+        if (question_id == maxResult) {
 
-    if (question_id == maxResult) {
+          let result = 0;
+          // get amount of correct answers
+          $.ajax({
+            url: `http://localhost:8080/quiz/correct_answer/${quiz_id}`,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+              result = Number(JSON.stringify(data));
+              console.log("DATA: " + result);
 
-    let result = 0;
-    // get amount of correct answers
-    $.ajax({
-      url: `http://localhost:8080/quiz/correct_answer/${quiz_id}`,
-      type: "GET",
-      dataType: "json",
-      success: function (data) {
-        result = Number(JSON.stringify(data));
-        console.log("DATA: " + result);
-
-        add_result(quiz_id, result, maxResult);
+              add_result(quiz_id, result, maxResult);
 
 
 
-        // clear attempts database
-        $.ajax({
-          method: 'POST',
-          url: `/quiz/clear_attempts`,
-          data: {question_id, id}
-        })
-          .then()
-      },
-      error: function (request, error) {
-        console.log("ERROR: ", JSON.stringify(request));
+              // clear attempts database
+              $.ajax({
+                method: 'POST',
+                url: `/quiz/clear_attempts`,
+                data: {question_id, id}
+              })
+                .then()
+            },
+            error: function (request, error) {
+              console.log("ERROR: ", JSON.stringify(request));
+            }
+          })
+        } else {
+          loadQuestion(quiz_id, question_id);
+        }
+
       }
     })
 
-    // post results to database
 
 
-
-
-
-
-
-
-  } else {
-    loadQuestion(quiz_id, question_id);
-  }
 
 });
 });
