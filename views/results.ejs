@@ -44,7 +44,7 @@
   </Header>
 
   <main class="main">
-    <div class ="your-score">
+    <div class="your-score">
       <!-- <i class="fa-solid fa-certificate fa-2xl"></i> -->
       <h5 class="score">Your score is:</h5>
     </div>
@@ -57,7 +57,8 @@
       </h2>
       <div class="buttons">
         <div></div>
-        <button class="popup" onclick="(alert(), navigator.clipboard.writeText(window.location.href))">Share your
+        <button type="button" class="popup"
+          onclick="(alert(), navigator.clipboard.writeText(window.location.href))">Share your
           results
           <span class="popuptext" id="myPopup">Your URL has been copied!</span>
         </button>
