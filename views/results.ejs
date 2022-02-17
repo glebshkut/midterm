@@ -19,15 +19,14 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,700;1,700&family=Rajdhani:wght@500&display=swap"
     rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/results.css" type="text/css" />
 
   <style>
   </style>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/quiz_results.js"></script>
-
-  <script type="text/javascript" src="/scripts/app.js"></script>
-  <!-- <script type="text/javascript" src="/results.js"></script> -->
+  <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
 </head>
 
 <body>
@@ -44,16 +43,19 @@
   </Header>
 
   <main class="main">
-    <div class="your-score">
-      <!-- <i class="fa-solid fa-certificate fa-2xl"></i> -->
-      <h5 class="score">Your score is:</h5>
+
+    <div class="quiz-details">
+      <h5>
+        <%= score.quiz_name %> - <%= score.subject %>
+      </h5>
+      <h5>
+        <%= score.username %>
+      </h5>
     </div>
-    <form method="GET">
-
+    <form method="GET" action="/quiz/<%= score.quiz_id %>">
+      <h4 class="score">Your score is:</h4>
       <h2 class="quiz-result">
-
-        <%=(score===undefined ? 0 : score.correct) %>/3
-
+        <%= score.result %>/<%= score.max_result %>
       </h2>
       <div class="buttons">
         <div></div>

@@ -11,15 +11,15 @@ $(document).ready(function () {
   $('.new-quiz').click(function (event) {
     event.preventDefault();
     renderQuizEntry();
-    $('.submit-name').on('click', function(event) {
-      myStorage.setItem("quizName" , $('.quiz-name').val());
-      myStorage.setItem("quizSubject" , $('.quiz-subject').val());
+    $('.submit-name').on('click', function (event) {
+      myStorage.setItem("quizName", $('.quiz-name').val());
+      myStorage.setItem("quizSubject", $('.quiz-subject').val());
     });
   });
 
 });
 
-const renderQuizElements = function() {
+const renderQuizElements = function () {
   console.log("adding quiz");
   console.log($('.list').is(':empty'));
   if ($('.list').is(':empty')) {

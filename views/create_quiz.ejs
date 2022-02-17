@@ -41,9 +41,17 @@
     </div>
   </Header>
 
+
   <main class="main">
     <h5 class="create-quiz">Create a Quiz</h5>
     <form method="POST">
+      <div class="toggle">
+        <label class="switch">
+          <input type="checkbox" class="inner">
+          <span class="slider round"></span>
+        </label for="switchcb">
+      <p class="private">Make private</p>
+    </div>
       <div class="question"><input placeholder="Type your question here" class="question-input"></div>
       <div class="correct"><input style="font-family: Rajdhani, FontAwesome;" placeholder="&#xf058 Type the correct answer here" class="correct-input"></div>
       <div class="wrong">
@@ -53,7 +61,7 @@
       </div>
       <div class="buttons">
         <div></div>
-        <button class="next-question" type="submit">Add Question</button>
+        <button class="next-question" type="button">Add Question</button>
         <button class="submit-quiz" type="submit">Submit Quiz</button>
       </div>
     </form>
