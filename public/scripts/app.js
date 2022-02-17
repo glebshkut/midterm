@@ -28,16 +28,18 @@ $(document).ready(function() {
     qas["correct"] = $(".correct-input").val();
     qas["wrong1"] = $(".wrong-input1").val();
     qas["wrong2"] = $(".wrong-input2").val();
+
     qas["wrong3"] = $(".wrong-input3").val();
 
     sessionStorage.setItem(`Q${numOfQuestions}`,JSON.stringify(qas));
-    qas = {};
+
     $('.main').slideUp(500);
     $('.question').empty();
     $('.correct').empty();
     $('.wrong').empty();
     getNewQuestion();
     $('.main').slideDown(500);
+    qas = {};
   });
 
   $('body').on("click",'.submit-quiz',function(event) {
@@ -67,6 +69,7 @@ $(document).ready(function() {
               let wrong1 = questionObj.wrong1;
               let wrong2 = questionObj.wrong2;
               let wrong3 = questionObj.wrong3;
+              console.log(question,correct,wrong1,wrong2,wrong3);
               console.log("sending ajax post to /quiz/addQuestion");
               $.ajax({
                 url : '/quiz/addQuestion',
@@ -89,11 +92,13 @@ $(document).ready(function() {
 });
 
 const getNewQuestion = function() {
-  $('.toggle').after(`<div class="question"><input placeholder="Type your question here" class="question-input"></div>
-  <div class="correct"><input placeholder="Type the correct answer here" class="correct-input"></div>
+  $('.toggle').after(`
+  <div class="question"><input placeholder="Type your question here" class="question-input"></div>
+  <div class="correct"><input style="font-family: Rajdhani, FontAwesome;" placeholder="&#xf058 Type the correct answer here" class="correct-input"></div>
   <div class="wrong">
-    <input placeholder="Type a wrong answer here" class="wrong-input1">
-    <input placeholder="Type a wrong answer here" class="wrong-input2">
-    <input placeholder="Type a wrong answer here" class="wrong-input3">
+    <input style="font-family: Rajdhani, FontAwesome;" placeholder="&#xf057 Type a wrong answer here" class="wrong-input1">
+    <input style="font-family: Rajdhani, FontAwesome;" placeholder="&#xf057 Type a wrong answer here" class="wrong-input2">
+    <input style="font-family: Rajdhani, FontAwesome;" placeholder="&#xf057 Type a wrong answer here" class="wrong-input3">
   </div>`);
 };
+
