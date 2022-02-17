@@ -50,20 +50,21 @@ module.exports = (db) => {
     console.log("attempting to add quiz");
     const name = req.body.quizName;
     const subject = req.body.quizSubject;
-    db.query(`INSERT INTO quizzes(name, subject) VALUES ($1, $2) RETURNING id;`, [name, subject])
+    let private = req.body.private;
+    console.log("we made it");
+    console.log(private);
+    if (private === "true") {
+      private = true;
+    } else {
+      private = false;
+    }
+    db.query(`INSERT INTO quizzes(name, subject, private) VALUES ($1, $2, $3) RETURNING id;`, [name, subject, private])
       .then(data => {
         const id = data.rows;
         res.json({id});
       })
       .catch(console.log("error adding a quiz"));
   });
-  // id SERIAL PRIMARY KEY NOT NULL,
-  // quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
-  // question TEXT NOT NULL,
-  // answer_1 TEXT NOT NULL, -- correct answer
-  // answer_2 TEXT NOT NULL,
-  // answer_3 TEXT NOT NULL,
-  // answer_4 TEXT NOT NULL
 
   router.post("/addQuestion", (req, res) => {
     console.log("attempting to add question");

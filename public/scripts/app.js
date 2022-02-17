@@ -3,9 +3,23 @@ myStorage = window.sessionStorage;
 let qas = {};
 const quizName =  sessionStorage.getItem('quizName');
 const quizSubject = sessionStorage.getItem('quizSubject');
+sessionStorage.setItem("private", "false");
 let numOfQuestions = 0;
 
 $(document).ready(function() {
+
+  $('body').on("click", '.inner',function(event) {
+
+    if (sessionStorage.getItem("private") === "false") {
+      sessionStorage.setItem("private", "true");
+      $(".private").text("Make public");
+    } else {
+      sessionStorage.setItem("private", false);
+      $(".private").text("Make private");
+    }
+
+    console.log(sessionStorage.getItem("private"));
+  });
 
   $('body').on("click",'.next-question',function(event) {
     event.preventDefault();
@@ -19,10 +33,11 @@ $(document).ready(function() {
     sessionStorage.setItem(`Q${numOfQuestions}`,JSON.stringify(qas));
     qas = {};
     $('.main').slideUp(500);
-    $('.main').empty();
+    $('.question').empty();
+    $('.correct').empty();
+    $('.wrong').empty();
     getNewQuestion();
     $('.main').slideDown(500);
-
   });
 
   $('body').on("click",'.submit-quiz',function(event) {
@@ -30,11 +45,13 @@ $(document).ready(function() {
 
     if (numOfQuestions > 0) {
       console.log("sending ajax post to /quiz/add");
+      const private = sessionStorage.getItem("private");
+      console.log(private);
       $.ajax({
         url : '/quiz/add',
         type : 'POST',
         dataType:'json',
-        data: {quizName,quizSubject},
+        data: {quizName,quizSubject, private},
         success : function(data) {
           console.log(JSON.stringify(data));
           let id = JSON.stringify(data);
@@ -60,6 +77,7 @@ $(document).ready(function() {
             }
             numOfQuestions -= 1;
           }
+          window.location.href = '/';
 
         },
         error : function(request,error) {
@@ -71,25 +89,11 @@ $(document).ready(function() {
 });
 
 const getNewQuestion = function() {
-  $newEntry = $(`
-  <h5 class="create-quiz">Create a Quiz</h5>
-  <form method="POST">
-  <label class="switch">
-  <input type="checkbox">
-  <span class="slider round"></span>
-  </label>
-    <div class="question"><input placeholder="Type your question here" class="question-input"></div>
-    <div class="correct"><input placeholder="Type the correct answer here" class="correct-input"></div>
-    <div class="wrong">
-      <input placeholder="Type a wrong answer here" class="wrong-input1">
-      <input placeholder="Type a wrong answer here" class="wrong-input2">
-      <input placeholder="Type a wrong answer here" class="wrong-input3">
-    </div>
-    <div class="buttons">
-      <div></div>
-      <button class="next-question" type="button">Add Question</button>
-      <button class="submit-quiz" type="submit">Submit Quiz</button>
-    </div>
-  </form>`);
-  $('.main').prepend($newEntry);
+  $('.toggle').after(`<div class="question"><input placeholder="Type your question here" class="question-input"></div>
+  <div class="correct"><input placeholder="Type the correct answer here" class="correct-input"></div>
+  <div class="wrong">
+    <input placeholder="Type a wrong answer here" class="wrong-input1">
+    <input placeholder="Type a wrong answer here" class="wrong-input2">
+    <input placeholder="Type a wrong answer here" class="wrong-input3">
+  </div>`);
 };
