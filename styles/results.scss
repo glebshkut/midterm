@@ -3,6 +3,9 @@
   font-size: 80pt;
 }
 
+.home-button {
+  margin-top: 20px;
+}
 .score {
   font-size: 30px;
   font-family: 'Rajdhani', sans-serif;
@@ -92,13 +95,6 @@
   }
 }
 
-.home {
-  display: flex;
-  align-content: end;
-  justify-content: flex-end;
-  padding: 0 40px;
-  padding-top: 0;
-}
 
 .reattempt-quiz {
   font-family: 'Rajdhani', sans-serif;

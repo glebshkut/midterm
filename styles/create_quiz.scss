@@ -17,6 +17,7 @@ main {
   font-size: 80pt;
 }
 .next-question {
+  margin-bottom: 30px;
   background-color:#7aba96 ;
   border: none;
   font-size: 18pt;
@@ -40,6 +41,7 @@ input {
   border-radius: 15px;
 }
 .create-quiz {
+  margin-bottom: 5px;
   font-size: 28px;
   font-family: 'Rajdhani', sans-serif;
 }
@@ -166,7 +168,7 @@ input {
 }
 
 .submit-quiz {
-  // margin-top: 30px;
+  margin-bottom: 30px;
   align-items: center;
   background-color: #7aba96;
   border: 2px solid #111;
@@ -226,6 +228,7 @@ input {
 }
 
 .home-button {
+margin-top: 30px;
   align-items: center;
   background-color: #7aba96;
   border: 2px solid #111;
