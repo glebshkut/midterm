@@ -1,14 +1,60 @@
 $(document).ready(() => {
 
-  // get Cookie function
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+  const resultsPage = (resultID) => {
+    $.ajax({
+      url: `/results/${resultID}`,
+      type: "GET",
+      dataType: "html",
+      success: function (data) {
+        console.log("results page is loaded:");
+      },
+      error: function (request, error) {
+        console.log("ERROR in loading results page:", error);
+      }
+    });
   }
 
+  const success = () => {
+    $.ajax({
+      url: `/results/get_last_result`,
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        const resultID = JSON.stringify(data["output"]["id"]);
+        console.log("Result ID: " + resultID);
+        resultsPage(resultID);
+      }
+    });
+
+  }
+
+  const add_result = (quiz_id, result, maxResult) => {
+    $.ajax({
+      method: 'POST',
+      url: `/results/add_results`,
+      data: {quiz_id, result, maxResult},
+      success: success()
+    });
+  };
+
+  const quiz_id = window.location.pathname.split('/')[2];
+  console.log("quiz_id:", quiz_id);
+
+  let maxResult = 0;
+    $.ajax({
+      url : `/quiz/maxResult/${quiz_id}`,
+      type : 'GET',
+      dataType:'json',
+      success : function(data) {
+        maxResult = Number(data.maxResult.maxresult);
+        console.log("maxResult:", maxResult);
+      },
+      error : function(request,error) {
+        console.log("Request: " + JSON.stringify(request));
+      }
+    });
+
   const renderQuestion = (question, question_id) => {
-    console.log(question, question_id);
     $('main#qa-content').empty();
 
       let result = ``;
@@ -25,7 +71,7 @@ $(document).ready(() => {
      }
 
     $('main#qa-content').append(`
-    <div id="question_${question_id}" class="question">x
+    <div id="question_${question_id}" class="question">
       ${question.question}
     </div>
 
@@ -47,8 +93,6 @@ $(document).ready(() => {
 
         // let result = JSON.stringify(data);
         // let parseResult = JSON.parse(result);
-        console.log(question_id);
-        console.log(data.questions[question_id], question_id);
         renderQuestion(data.questions[question_id], question_id);
       },
       error : function(request,error) {
@@ -68,21 +112,55 @@ $(document).ready(() => {
     const question_id = Number($('div.question').attr('id').split('_')[1]) + 1;
     console.log("question_id:", question_id);
 
-    const cookie = getCookie('user_id');
-    console.log("user_id:", cookie);
-
     $.ajax({
       method: 'POST',
       url: `/quiz/attempt`,
-      data: {question_id, id, cookie}
+      data: {question_id, id}
     })
-      .then(() => {
+      .then()
 
-      })
 
-    const quiz_id = window.location.pathname.split('/')[2];
-    console.log("quiz_id:", quiz_id);
+    if (question_id == maxResult) {
 
+    let result = 0;
+    // get amount of correct answers
+    $.ajax({
+      url: `http://localhost:8080/quiz/correct_answer/${quiz_id}`,
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        result = Number(JSON.stringify(data));
+        console.log("DATA: " + result);
+
+        add_result(quiz_id, result, maxResult);
+
+
+
+        // clear attempts database
+        $.ajax({
+          method: 'POST',
+          url: `/quiz/clear_attempts`,
+          data: {question_id, id}
+        })
+          .then()
+      },
+      error: function (request, error) {
+        console.log("ERROR: ", JSON.stringify(request));
+      }
+    })
+
+    // post results to database
+
+
+
+
+
+
+
+
+  } else {
     loadQuestion(quiz_id, question_id);
-  });
+  }
+
+});
 });
