@@ -15,6 +15,24 @@
   text-decoration-thickness: 8px;
 }
 
+.quiz-details {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.quiz-details h5 {
+  font-family: 'Redressed', cursive;
+  margin: 5px;
+  font-size: 20px;
+}
+
+.score {
+  margin-bottom: 0;
+}
+
 
 .share-results {
   font-family: 'Rajdhani', sans-serif;
