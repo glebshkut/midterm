@@ -3,7 +3,9 @@
 
 <head>
   <title>Quizzyy! Score</title>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
@@ -36,12 +38,16 @@
   </div>
   <Header>
     <div class="logo">
+      <i class="fa-solid fa-brain fa-sm"></i>
       Quizzyy!
     </div>
   </Header>
 
   <main class="main">
-    <h5 class="score">Your score is:</h5>
+    <div class ="your-score">
+      <!-- <i class="fa-solid fa-certificate fa-2xl"></i> -->
+      <h5 class="score">Your score is:</h5>
+    </div>
     <form method="GET">
 
       <h2 class="quiz-result">
@@ -51,11 +57,12 @@
       </h2>
       <div class="buttons">
         <div></div>
-        <!-- <button class="popup" onclick="myFunction()">Share your results
-          <span class="popuptext" id="myPopup">Your URL has been copied!</span> -->
-        </div>
-        <button class="share-results"
-          onclick="prompt('Copy this link to share your results!',window.location.href)">Share your results</button>
+        <button class="popup" onclick="(alert(), navigator.clipboard.writeText(window.location.href))">Share your
+          results
+          <span class="popuptext" id="myPopup">Your URL has been copied!</span>
+        </button>
+
+
         <button class="reattempt-quiz" type="submit">Reattempt this quiz</button>
       </div>
     </form>

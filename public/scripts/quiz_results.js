@@ -18,9 +18,8 @@ $(function () {
 })
 
 //////
-// function alert() {
-//   let popup = document.getElementById("myPopup");
-//   popup.classList.toggle("show");
-// }
-
+function alert() {
+  let popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
 
