@@ -55,7 +55,10 @@ module.exports = (db) => {
     INSERT INTO attempts(user_id, qa_id, given_answer) VALUES ($1, $2, $3)
     RETURNING *;
     `, [cookie, qa_id, given_answer])
-      .then(data => console.log(data.rows[0]))
+      .then(data => {
+        console.log(data.rows[0]);
+        res.status(200).send("success");
+    })
       .catch(err => {
         res
           .status(500)
@@ -106,7 +109,9 @@ module.exports = (db) => {
     db.query(`
     DELETE FROM attempts WHERE user_id = $1;
     `, [cookie])
-      .then()
+      .then(() => {
+        res.status(200).send("success");
+      })
       .catch(err => {
         res
           .status(500)

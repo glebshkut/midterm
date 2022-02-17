@@ -1,5 +1,42 @@
 $(document).ready(() => {
 
+  const resultsPage = (resultID) => {
+    $.ajax({
+      url: `/results/${resultID}`,
+      type: "GET",
+      dataType: "html",
+      success: function (data) {
+        console.log("results page is loaded:");
+      },
+      error: function (request, error) {
+        console.log("ERROR in loading results page:", error);
+      }
+    });
+  }
+
+  const success = () => {
+    $.ajax({
+      url: `/results/get_last_result`,
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        const resultID = JSON.stringify(data["output"]["id"]);
+        console.log("Result ID: " + resultID);
+        resultsPage(resultID);
+      }
+    });
+
+  }
+
+  const add_result = (quiz_id, result, maxResult) => {
+    $.ajax({
+      method: 'POST',
+      url: `/results/add_results`,
+      data: {quiz_id, result, maxResult},
+      success: success()
+    });
+  };
+
   const quiz_id = window.location.pathname.split('/')[2];
   console.log("quiz_id:", quiz_id);
 
@@ -88,7 +125,6 @@ $(document).ready(() => {
     let result = 0;
     // get amount of correct answers
     $.ajax({
-      // url: `quiz/correct_answer/${quiz_id}`,
       url: `http://localhost:8080/quiz/correct_answer/${quiz_id}`,
       type: "GET",
       dataType: "json",
@@ -96,13 +132,9 @@ $(document).ready(() => {
         result = Number(JSON.stringify(data));
         console.log("DATA: " + result);
 
-        // post results to database
-        $.ajax({
-          method: 'POST',
-          url: `/results/add_results`,
-          data: {quiz_id, result, maxResult}
-        })
-          .then()
+        add_result(quiz_id, result, maxResult);
+
+
 
         // clear attempts database
         $.ajax({
@@ -117,22 +149,14 @@ $(document).ready(() => {
       }
     })
 
+    // post results to database
 
 
 
 
-    // redirect to result page
-    $.ajax({
-      url: "/results/:id",
-      type: "GET",
-      dataType: "json",
-      success: function (data) {
-        console.log("results page is loaded:" + JSON.stringify(data));
-      },
-      error: function (request, error) {
-        console.log("ERROR in loading results page:", error);
-      }
-    });
+
+
+
 
   } else {
     loadQuestion(quiz_id, question_id);
