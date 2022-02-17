@@ -117,7 +117,7 @@ const creatQuizEntry = function () {
         <h6>Name</h6>
         <input placeholder="Enter quiz name here" class="quiz-name">
         <h6>Subject</h6>
-        <input placeholder="enter quiz subject here" class="quiz-subject">
+        <input placeholder="Enter quiz subject here" class="quiz-subject">
         <button type="submit" class="submit-name">Let's create!</button>
     <form>
   `);
