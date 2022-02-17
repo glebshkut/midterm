@@ -34,7 +34,7 @@
 }
 
 
-.share-results {
+.popup {
   font-family: 'Rajdhani', sans-serif;
   font-size: 25px;
   align-items: center;
@@ -58,7 +58,7 @@
   touch-action: manipulation;
 }
 
-.share-results:after {
+.popup:after {
   background-color: #111;
   border-radius: 8px;
   content: "";
@@ -73,21 +73,21 @@
   z-index: -1;
 }
 
-.share-results:hover:after {
+.popup:hover:after {
   transform: translate(0, 0);
 }
 
-.share-results:active {
+.popup:active {
   background-color: #7aba96;
   outline: 0;
 }
 
-.share-results:hover {
+.popup:hover {
   outline: 0;
 }
 
 @media (min-width: 768px) {
-  .share-results {
+  .popup {
     padding: 0 40px;
   }
 }
@@ -219,3 +219,13 @@
   from {opacity: 0;}
   to {opacity:1 ;}
 }
+
+.your-score{
+display: flex;
+justify-content: center;
+}
+
+// .your-score > i {
+//   color: rgba(213, 166, 46, 0.982);
+//   padding-right: 10px;
+// }
