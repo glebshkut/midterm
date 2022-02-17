@@ -1,5 +1,7 @@
 const express = require('express');
 const router  = express.Router();
+var cookieSession = require('cookie-session');
+const { data } = require('jquery');
 
 module.exports = (db) => {
   // attend a quiz
@@ -35,8 +37,6 @@ module.exports = (db) => {
     `, [quiz_id])
       .then(data => {
         const questions = data.rows;
-        // console.log(quizzes);
-
         res.json({questions});
       })
       .catch(err => {
@@ -88,13 +88,16 @@ module.exports = (db) => {
   router.post("/attempt", (req, res) => {
     const qa_id = req.body.question_id;
     const given_answer = req.body.id;
-    const cookie = req.body.cookie;
+    const cookie = req.session.user_id;
 
     db.query(`
     INSERT INTO attempts(user_id, qa_id, given_answer) VALUES ($1, $2, $3)
     RETURNING *;
     `, [cookie, qa_id, given_answer])
-      .then()
+      .then(data => {
+        console.log(data.rows[0]);
+        res.status(200).send("success");
+    })
       .catch(err => {
         res
           .status(500)
@@ -102,5 +105,60 @@ module.exports = (db) => {
       });
 
   });
+
+  router.get("/maxResult/:id", (req, res) => {
+    const quiz_id = req.params.id;
+
+    db.query(`
+    SELECT COUNT(*) as maxResult
+    FROM qas
+    WHERE quiz_id = $1;
+    `, [quiz_id])
+      .then(data => {
+        const maxResult = data.rows[0];
+        res.json({maxResult});
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
+  router.get("/correct_answer/:quizID", (req, res) => {
+    const id = req.session.user_id;
+
+    db.query(`
+  SELECT count(*) as correct
+  FROM attempts
+  WHERE attempts.user_id = $1 AND attempts.given_answer = 1;
+  `, [id])
+      .then(result => {
+        const score = result.rows[0];
+        res.send(JSON.stringify(Number(score.correct)));
+      })
+      .catch(err => console.log("error", err));
+
+  });
+
+  router.post("/clear_attempts", (req, res) => {
+    const cookie = req.session.user_id;
+
+    db.query(`
+    DELETE FROM attempts WHERE user_id = $1;
+    `, [cookie])
+      .then(() => {
+        res.status(200).send("success");
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+
+
   return router;
 };

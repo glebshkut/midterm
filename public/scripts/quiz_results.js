@@ -1,26 +1,12 @@
-$(function () {
-  console.log("HIIII");
-  const quizResult = function () {
-    console.log("quizResults!");
-    $.ajax({
-      url: "/results/quizID",
-      type: "GET",
-      dataType: "json",
-      // success: function (data) {
-      //   console.log("DATA: " + JSON.stringify(data));
-      // },
-      // error: function (request, error) {
-      //   console.log("ERROR: ", error);
-      // }
-    })
-  }
-  quizResult();
+$(() => {
+  $('body').on('click', '.share-results', function() {
+    let $temp = $("<input>");
+    const $url = $(location).attr('href');
+    $("body").append($temp);
+    $temp.val($url).select();
+    document.execCommand("copy");
+    $temp.remove();
+    $(".share-results").text("URL copied!");
+  })
 })
-
-//////
-// function alert() {
-//   let popup = document.getElementById("myPopup");
-//   popup.classList.toggle("show");
-// }
-
 
