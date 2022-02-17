@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
   // get all of the quizzes
@@ -25,8 +25,9 @@ module.exports = (db) => {
   });
 
   router.get("/quiz", (req, res) => {
+    
     db.query(`
-    SELECT name, subject FROM quizzes
+    SELECT name, id, subject FROM quizzes
     WHERE private = false
     ORDER BY name, subject;
     `)
@@ -34,7 +35,7 @@ module.exports = (db) => {
         const quizzes = data.rows;
         // console.log(quizzes);
 
-        res.json({quizzes});
+        res.json({ quizzes });
       })
       .catch(err => {
         res
