@@ -24,6 +24,7 @@ module.exports = (db) => {
     res.render("../views/create_quiz");
   });
 
+
   router.get("/quiz", (req, res) => {
     
     db.query(`
@@ -44,6 +45,8 @@ module.exports = (db) => {
       });
   });
   return router;
+
 };
+
 
 
