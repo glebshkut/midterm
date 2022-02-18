@@ -6,6 +6,10 @@ $(document).ready(function () {
   $('.join-quiz').click(function (event) {
     event.preventDefault();
     renderQuizElements();
+    $('.search').on('keyup', function() {
+
+      renderSearchElements();
+    });
   });
 
   $('.new-quiz').click(function (event) {
@@ -19,9 +23,9 @@ $(document).ready(function () {
 
 });
 
+
 const renderQuizElements = function () {
   console.log("adding quiz");
-  console.log($('.list').is(':empty'));
   if ($('.list').is(':empty')) {
     $.ajax({
 
@@ -32,7 +36,6 @@ const renderQuizElements = function () {
 
         let result = JSON.stringify(data);
         let parseResult = JSON.parse(result);
-        console.log(parseResult.quizzes[0].name);
         let $quiz = createQuizElement(parseResult.quizzes);
         $('.list').prepend($quiz);
         $('.posted').slideDown(400);
@@ -63,10 +66,41 @@ const renderQuizEntry = function () {
 
 };
 
+const renderSearchElements = function() {
+  $('.list').empty();
+  searchTerm = $('.search').val();
+  $.ajax({
+    url: '/quizzes/search',
+    type: 'POST',
+    dataType: 'json',
+    data: {searchTerm},
+    success: function (data) {
+
+      let result = JSON.stringify(data);
+      let parseResult = JSON.parse(result);
+      let $quiz = createSearchedElement(parseResult.quizzes);
+      $('.list').prepend($quiz);
+    },
+    error: function (request, error) {
+      console.log("Request: " + JSON.stringify(request));
+    }
+  });
+};
+
+const createSearchedElement = function(data) {
+  console.log(data);
+  listItems = ``;
+  data.forEach(quiz => {
+    console.log(quiz);
+    listItems += `<li><a href="/quiz/${quiz.id}">${quiz.name}</a></li>`;
+  });
+
+  return $(listItems);
+};
+
 const createQuizElement = function (data) {
   let list = `<ul class="quiz-list">`;
   data.forEach(quiz => {
-    console.log(quiz);
     list += `<li><a href="/quiz/${quiz.id}">${quiz.name}</a></li>`;
   });
 
@@ -83,7 +117,7 @@ const creatQuizEntry = function () {
         <h6>Name</h6>
         <input placeholder="Enter quiz name here" class="quiz-name">
         <h6>Subject</h6>
-        <input placeholder="enter quiz subject here" class="quiz-subject">
+        <input placeholder="Enter quiz subject here" class="quiz-subject">
         <button type="submit" class="submit-name">Let's create!</button>
     <form>
   `);

@@ -75,10 +75,12 @@ module.exports = (db) => {
     const wrong2 = req.body.wrong2;
     const wrong3 = req.body.wrong3;
 
+    console.log(wrong1, wrong2, wrong3, id);
     db.query(`INSERT INTO qas (quiz_id, question, answer_1, answer_2, answer_3, answer_4) VALUES ($1, $2, $3, $4, $5, $6)`, [id, question, correct, wrong1, wrong2, wrong3])
       .then()
       .catch(err => {
         console.log("error adding question to quiz");
+        console.log(err.message);
         res
           .status(500)
           .json({ error: err.message});
