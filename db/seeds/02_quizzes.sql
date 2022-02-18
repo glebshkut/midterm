@@ -5,3 +5,4 @@ INSERT INTO quizzes (name, subject, private, user_id) VALUES ('Laws of Physics 1
 INSERT INTO quizzes (name, subject, private, user_id) VALUES ('Python fundamentals', 'Computer Science', FALSE, 2);
 INSERT INTO quizzes (name, subject, private, user_id) VALUES ('SQL queries', 'Computer Science', FALSE, 3);
 INSERT INTO quizzes (name, subject, private, user_id) VALUES ('Best JS practices', 'Computer Science', FALSE, 3);
+INSERT INTO quizzes (name, subject, private, user_id) VALUES ('Quiz app presentation', 'midterm', FALSE, 1);
