@@ -51,7 +51,7 @@ module.exports = (db) => {
     console.log("searchterm:", searchTerm);
     db.query(`
     SELECT name, id FROM quizzes
-    WHERE LOWER(name) LIKE LOWER($1) OR LOWER(subject) LIKE LOWER($1)
+    WHERE private = false AND (LOWER(name) LIKE LOWER($1) OR LOWER(subject) LIKE LOWER($1))
     ORDER BY name, subject;
     `, [searchTerm])
       .then(data => {
