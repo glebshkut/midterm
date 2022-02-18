@@ -69,7 +69,7 @@ $(document).ready(function() {
               let wrong1 = questionObj.wrong1;
               let wrong2 = questionObj.wrong2;
               let wrong3 = questionObj.wrong3;
-              console.log(question,correct,wrong1,wrong2,wrong3);
+
               console.log("sending ajax post to /quiz/addQuestion");
               $.ajax({
                 url : '/quiz/addQuestion',
@@ -80,7 +80,7 @@ $(document).ready(function() {
             }
             numOfQuestions -= 1;
           }
-          window.location.href = '/';
+          window.location.href = `/quiz/${id}`;
 
         },
         error : function(request,error) {
