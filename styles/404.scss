@@ -1,0 +1,15 @@
+.logo {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 80pt;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  // min-height: 100vh;
+  background-color: #15ab84;
+  background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+}
+
