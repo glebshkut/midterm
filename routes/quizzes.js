@@ -50,7 +50,7 @@ module.exports = (db) => {
     searchTerm = "%" + searchTerm + "%";
     console.log("searchterm:", searchTerm);
     db.query(`
-    SELECT name FROM quizzes
+    SELECT name, id FROM quizzes
     WHERE LOWER(name) LIKE LOWER($1) OR LOWER(subject) LIKE LOWER($1)
     ORDER BY name, subject;
     `, [searchTerm])

@@ -36,7 +36,6 @@ const renderQuizElements = function () {
 
         let result = JSON.stringify(data);
         let parseResult = JSON.parse(result);
-        console.log(parseResult.quizzes[0].name);
         let $quiz = createQuizElement(parseResult.quizzes);
         $('.list').prepend($quiz);
         $('.posted').slideDown(400);
@@ -70,7 +69,6 @@ const renderQuizEntry = function () {
 const renderSearchElements = function() {
   $('.list').empty();
   searchTerm = $('.search').val();
-  console.log(searchTerm);
   $.ajax({
     url: '/quizzes/search',
     type: 'POST',
@@ -90,8 +88,10 @@ const renderSearchElements = function() {
 };
 
 const createSearchedElement = function(data) {
+  console.log(data);
   listItems = ``;
   data.forEach(quiz => {
+    console.log(quiz);
     listItems += `<li><a href="/quiz/${quiz.id}">${quiz.name}</a></li>`;
   });
 
