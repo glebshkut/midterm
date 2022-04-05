@@ -16,6 +16,7 @@ Complete Quiz Application, which allows users to create, attend quizzes, and sha
 7. Run the server: `npm run local`
   - Note: nodemon is used, so you should not have to restart your server
 8. Visit `http://localhost:8080/`
+9. Go to `http://localhost:8080/login/1` to login as a user 1
 
 
 ## Dependencies
