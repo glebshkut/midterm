@@ -19,16 +19,23 @@ Complete Quiz Application, which allows users to create, attend quizzes, and sha
 9. Go to `http://localhost:8080/login/1` to login as a user 1
 
 ## Screenshots
+
+### Home page
 !["Home page"](https://github.com/glebshkut/midterm/blob/master/docs/home-page.png?raw=true)
 
+### Quiz Creation
 !["Quiz Creation"](https://github.com/glebshkut/midterm/blob/master/docs/quiz-creation.png?raw=true)
 
+### Quiz Questions Adding
 !["Quiz Questions Adding"](https://github.com/glebshkut/midterm/blob/master/docs/quiz-questions.png?raw=true)
 
+### Quizzes List
 !["Quizzes List"](https://github.com/glebshkut/midterm/blob/master/docs/quizzes-list.png?raw=true)
 
+### Quiz
 !["Quiz"](https://github.com/glebshkut/midterm/blob/master/docs/quiz.png?raw=true)
 
+### Quiz Result
 !["Quiz Result"](https://github.com/glebshkut/midterm/blob/master/docs/result.png?raw=true)
 
 
